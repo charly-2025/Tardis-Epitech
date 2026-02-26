@@ -36,15 +36,21 @@ def load_data():
 def load_model():
     return joblib.load("model.pkl")
 
+df = load_data()
+model_data = load_model()
+model = model_data["model"]
+encoders = model_data["encoders"]
+features = model_data["features"]
+
+st.sidebar.title("Filtres")
+
+annees = sorted(df["annee"].dropna().unique().astype(int))
+selected_years = st.sidebar.multiselect("Années", annees, default=annees)
+
 
 
 st.title("Real-Time Data Dashboard Trains Delay")
-number = st.slider("Causes externes", 0, 100)
-def stocks_to_str(stocks):
-    return ",".join(stocks)
+text_contents = '''telecharger pour avoir en pdf'''
+st.download_button('Télécharger un fichier', text_contents)
 
-
-if "Retard moyen de tous les trains à l'arrivée" not in st.session_state:
-    st.session_state.tickers_input = st.query_params.get(
-        "stocks", stocks_to_str("Cause","Infrastructure","Gestion trafic","Matériel roulant","Gestion en gare","Voyageurs")
-    ).split(",")
+st.line_chart(df)

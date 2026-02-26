@@ -42,7 +42,7 @@ def load_data():
 
 @st.cache_resource #anything you CAN'T store in a database(ML models, database connections)
 def load_model():
-    return joblib.load("model.pkl")
+    return joblib.load("model.joblib")
 
 
 df = load_data()

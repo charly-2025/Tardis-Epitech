@@ -30,7 +30,7 @@ CAUSE_LABELS = [
     "Voyageurs",
 ]
 
-@st.cache_data
+@st.cache_data #anything you CAN store in a database(python, dataframe, API call)
 def load_data():
     df = pd.read_csv("cleaned_dataset.csv")
     df["Date"] = pd.to_datetime(df["Date"], format="%Y-%m")
@@ -40,7 +40,7 @@ def load_data():
     return df
 
 
-@st.cache_resource
+@st.cache_resource #anything you CAN'T store in a database(ML models, database connections)
 def load_model():
     return joblib.load("model.pkl")
 

@@ -36,7 +36,7 @@ def load_data():
     df["Date"] = pd.to_datetime(df["Date"], format="%Y-%m")
     df["Annee"] = df["Date"].dt.year
     df["Mois"] = df["Date"].dt.month
-    df["liaison"] = df["Gare de départ"] + " → " + df["Gare d'arrivée"]
+    df["liaison"] = df["Gare de départ"] + " -> " + df["Gare d'arrivée"]
     return df
 
 

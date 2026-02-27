@@ -76,7 +76,7 @@ col1.metric("Retard moyen a l'arrivee", f"{df_f[TARGET].mean():.1f} min")
 col2.metric("Trajets analyses", f"{len(df_f):,}")
 col3.metric("Ponctualite (<=5 min)", f"{(df_f[TARGET] <= 5).mean() * 100:.1f}%")
 col4.metric("Taux annulation moyen", f"{(df_f['Nombre de trains annulés'] / df_f['Nombre de circulations prévues']).mean() * 100:.1f}%")
-
+#shows the average of all cumulative years with the number of identified trips, put in minute and percentage with the graphic
 st.divider()
 
 tab1, tab2, tab3 = st.tabs(["Visualisations", "Prediction", "Donnees"])
@@ -157,7 +157,7 @@ with tab1:
     ax.set_title("Causes de retard (moyennes sur la selection)")
     st.pyplot(fig)
     plt.close()
-
+#all partie of the graph for analysie
 with tab2:
     st.subheader("Predire le retard d'un trajet")
     st.markdown("Renseignez les caracteristiques du trajet pour obtenir une estimation du retard moyen a l'arrivee")
@@ -169,11 +169,11 @@ with tab2:
         gare_dep = st.selectbox("Gare de depart", sorted(df["Gare de départ"].dropna().unique()))
         gare_arr = st.selectbox("Gare d'arrivee", sorted(df["Gare d'arrivée"].dropna().unique()))
         service = st.selectbox("Type de service", sorted(df["Service"].dropna().unique()))
-
+        #choice your traject for predict the potentiel delay
     with col_b:
         st.markdown("**Temporel**")
         mois_pred = st.slider("Mois", 1, 12, 6)
-        annee_pred = st.selectbox("Annee", sorted(annees), index=len(annees) - 1)
+        annee_pred = st.selectbox("Annee", list(range(min(annees), max(annees) +11)), index=len(annees) - 1)#time of choice your prediction
 
     st.divider()
 
@@ -303,4 +303,4 @@ with tab3:
         data=csv,
         file_name="sncf_retards_filtres.csv",
         mime="text/csv",
-    )
+    ) #for user of the application for why whatch the data using for prediction with posibility download the csv

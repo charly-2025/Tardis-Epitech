@@ -17,11 +17,6 @@ Analysis of historical SNCF train delay data to understand what causes delays an
 
 `Python` · `pandas` · `NumPy` · `scikit-learn` · `Matplotlib / Seaborn` · `Streamlit`
 
-## Team
-
-- Charly Richard-Fromont
-- Noa Loussouarn
-
 ---
 
 ## Technical documentation
